@@ -1,0 +1,29 @@
+<?php 
+$servername = "localhost";
+$database = "aula_conecta";
+$username = "root";
+$password = "";
+
+//Criando a conexão
+$conn = mysqli_connect($servername, $username,$password, $database);
+
+//Checando conexão
+if(!$conn){
+    die("Falha na conexão: ".mysli_connect_error());
+}
+echo "conexão bem sucedida! <br><br>";
+
+$sql ="SELECT * FROM usuarios";
+//$sql = "INSERT INTO usuarios(id, nome)VALUES ('','João Pedro')"; //INSERIR no Banco de Dados
+//$sql = "DELETE FROM usuarios WHERE nome ='Joana'"; //DELETAR do Banco de Dados
+
+$query = mysqli_query($conn, $sql) or die("Erro");
+
+//Lembre-se de comertar este WHILE quando for testar as funções de INSERT e DELETE
+while($dados=mysqli_fetch_assoc($query)){
+    echo $dados['nome'].'<br>';    
+}
+
+mysqli_close($conn);
+?>
+
